@@ -1,0 +1,16 @@
+servlet:
+  session:
+    timeout: 3600s
+#eureka:
+#  client:
+#    serviceUrl: #注册中心的地址
+#      defaultZone: http://127.0.0.1:8888/eureka/
+#  instance:
+#    lease-renewal-interval-in-seconds: 1
+#    lease-expiration-duration-in-seconds: 2
+#
+#server:
+#  port: 8083  #服务端口号
+#spring:
+#  application:
+#    name: service-provider1 #提供者的服务名称--调用的时候根据改名称来调用对应服务的方法

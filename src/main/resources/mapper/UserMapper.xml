@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.enn.lesson_test.mapper.UserMapper">
+<!--    数据库中字段与实体类中字段匹配-->
+    <resultMap id="UserEntityMapper" type="com.enn.lesson_test.entity.User">
+        <id column="uid" property="uid"/>
+        <result column="is_delete" property="isDelete"/>
+    </resultMap>
+<!--    执行数据库的插入行为-->
+    <insert id="addUser" useGeneratedKeys="true" keyProperty="uid">
+        insert into t_user(
+            uid,username,password,salt,phone,email,gender,is_delete)
+        values (
+            #{uid},#{username},#{password},#{salt},#{phone},#{email},#{gender},#{isDelete})
+    </insert>
+
+<!--    数据库的查询行为-->
+    <select id="findUser" resultMap="UserEntityMapper">
+        select
+            *
+        from
+            t_user
+        where
+            uid=#{uid}
+    </select>
+
+<!--    数据库的更新行为-->
+    <update id="updateUserPassword">
+        update
+            t_user
+        set
+            password=#{password},
+            salt=#{salt}
+        where
+            uid=#{uid}
+    </update>
+
+    <!--    按名字查询行为-->
+    <select id="findByName" resultMap="UserEntityMapper">
+        select
+            *
+        from
+            t_user
+        where
+            username=#{username}
+    </select>
+
+<!--    数据库的删除操作-->
+    <update id="deleteUserMessage">
+        update
+            t_user
+        set
+            is_delete=1
+        where
+            uid=#{uid}
+    </update>
+</mapper>
